@@ -48,8 +48,9 @@ class AddTodo extends Component {
       // 3. The return should also include a button with the handleSubmit function from above that is passed into
       // an OnClick event.
       // 4. The value of the text field also should reflect the local state of this component.
-      <div>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <TextField
+          style={{ marginTop: "10px" }}
           id="content"
           label="Add New Todo"
           variant="outlined"
@@ -57,6 +58,7 @@ class AddTodo extends Component {
           value={this.state.content}
         />
         <TextField
+          style={{ marginTop: "10px" }}
           id="preCondition"
           label="Pre-Condition"
           variant="outlined"
@@ -64,6 +66,7 @@ class AddTodo extends Component {
           value={this.state.preCondition}
         />
         <TextField
+          style={{ marginTop: "10px" }}
           id="acceptanceCriteria"
           label="Acceptance Criteria"
           variant="outlined"
@@ -71,7 +74,7 @@ class AddTodo extends Component {
           value={this.state.acceptanceCriteria}
         />
         <Button
-          style={{ marginLeft: "10px" }}
+          style={{ marginTop: "10px" }}
           onClick={this.handleSubmit}
           variant="contained"
           color="primary"
