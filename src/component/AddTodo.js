@@ -8,6 +8,8 @@ class AddTodo extends Component {
     this.state = {
       content: "",
       date: "",
+      preCondition: "",
+      acceptanceCriteria: "",
     };
   }
   // The handleChange function updates the react state with the new input value provided from the user.
@@ -15,8 +17,8 @@ class AddTodo extends Component {
   // into the text field.
   handleChange = (event) => {
     this.setState({
-      content: event.target.value,
-      date: new Date().toLocaleString('en-US'),
+      ...this.state,
+      [event.target.id]: event.target.value
     });
   };
   // The handleSubmit function collects the forms input and puts it into the react state.
@@ -26,10 +28,14 @@ class AddTodo extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     if (this.state.content.trim()) {
-      this.props.addTodo(this.state);
-      this.setState({
-        content: "",
-        date: "",
+      this.setState({ date: new Date().toLocaleString('en-US'), }, () => {
+        this.props.addTodo(this.state);
+        this.setState({
+          content: "",
+          date: "",
+          preCondition: "",
+          acceptanceCriteria: "",
+        });
       });
     }
   };
@@ -44,10 +50,25 @@ class AddTodo extends Component {
       // 4. The value of the text field also should reflect the local state of this component.
       <div>
         <TextField
-          label="Add New Item"
+          id="content"
+          label="Add New Todo"
           variant="outlined"
           onChange={this.handleChange}
           value={this.state.content}
+        />
+        <TextField
+          id="preCondition"
+          label="Pre-Condition"
+          variant="outlined"
+          onChange={this.handleChange}
+          value={this.state.preCondition}
+        />
+        <TextField
+          id="acceptanceCriteria"
+          label="Acceptance Criteria"
+          variant="outlined"
+          onChange={this.handleChange}
+          value={this.state.acceptanceCriteria}
         />
         <Button
           style={{ marginLeft: "10px" }}
