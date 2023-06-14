@@ -10,7 +10,7 @@
 
 .left {
   left: 0;
-  background-color: #0f62fe;
+  background-color: #DF83FF;
 }
 
 .right {
@@ -22,21 +22,22 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: centers;
+  text-align: center;
 }
 
 .name_title {
   font-size: 48px;
   color: black;
-  text-align: left;
+  text-align: center;
   padding-bottom: 20px;
 }
 
 .brief_description {
-  text-align: left;
+  text-align: center;
 }
 
 .profile_image {
-  width: 500px;
+  width: 50vw;
   height: auto;
+  border-radius: 50px;
 }
