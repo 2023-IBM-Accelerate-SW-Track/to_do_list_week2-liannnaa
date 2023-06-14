@@ -27,6 +27,11 @@ class Home extends Component {
       // Update the local state with the new array.
       this.setState({
         todos: new_list,
+        errorMessage: null,
+      });
+    } else {
+      this.setState({
+        errorMessage: 'This item is already in the list.',
       });
     }
   };
@@ -50,6 +55,7 @@ class Home extends Component {
         {/* When returning the Todos component, todos is a prop passed to the todos.js file
          to format and render the current todo list state */}
         <Todos todos={this.state.todos} deleteTodo={this.deleteTodo} />
+        {this.state.errorMessage && <p>{this.state.errorMessage}</p>}
       </div>
     );
   }
