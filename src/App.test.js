@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, within } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { unmountComponentAtNode } from 'react-dom';
 import App from './App';
 
@@ -55,12 +55,18 @@ test('test that App component can be deleted thru checkbox', async () => {
   render(<App />);
   const inputTask = screen.getByRole('textbox', {name: /Add New Item/i});
   const addButton = screen.getByRole('button', {name: /Add/i});
+  
   fireEvent.change(inputTask, { target: { value: "History Test"}});
   fireEvent.click(addButton);
+
   const task = await screen.findByText(/History Test/i);
   expect(task).toBeInTheDocument();
-  const checkbox = within(task).getByRole('checkbox');
-  fireEvent.click(checkbox);
+
+  await waitFor(() => {
+    const checkbox = screen.getByTestId('delete-task');
+    fireEvent.click(checkbox);
+  });
+
   const noTodosText = await screen.findByText(/You have no todo's left/i);
   expect(noTodosText).toBeInTheDocument();
 });
