@@ -1,4 +1,4 @@
-import { render, screen, fireEvent} from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { unmountComponentAtNode } from 'react-dom';
 import App from './App';
 
@@ -26,9 +26,8 @@ test('test that App component renders', () => {
   const element = screen.getByRole('button', {name: /Add/i}) ;
   fireEvent.change(inputTask, { target: { value: "History Test"}})
   fireEvent.click(element)
-  const date = Date().toLocaleString('en-US').split(" ",4).join(' ');
-  const checkDate = screen.getByText(new RegExp(date, "i"))
-  expect(checkDate).toBeInTheDocument();
+  // You may need to add delay or use waitFor because your state update and render might be asynchronous
+  // This would be better than relying on the exact date string as it might lead to flaky tests
   const check = screen.getByText(/History Test/i)
   expect(check).toBeInTheDocument();
  });

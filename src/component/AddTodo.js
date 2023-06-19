@@ -52,10 +52,11 @@ class AddTodo extends Component {
         <TextField
           style={{ marginTop: "10px" }}
           id="content"
-          label="Add New Todo"
+          label="Add New Item"
           variant="outlined"
           onChange={this.handleChange}
           value={this.state.content}
+          aria-label="Add New Item"
         />
         <TextField
           style={{ marginTop: "10px" }}
